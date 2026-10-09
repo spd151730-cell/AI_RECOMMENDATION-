@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Avatar Studio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .choice-card {
+            box-sizing: border-box;
+            background: #ffffff; border: 2px solid rgba(103, 80, 154, 0.14); border-radius: 24px;
+            padding: 1.8rem; text-align: center; box-shadow: 0 14px 30px rgba(45, 30, 65, 0.05);
+            transition: all 0.25s ease; cursor: pointer; display: flex; flex-direction: column;
+            justify-content: space-between; height: 100%;
+        }
+        .choice-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(107, 75, 176, 0.12); }
+        .choice-card.active { border-color: #6b4bb0; background: linear-gradient(180deg, #f5efff 0%, #ffffff 100%); box-shadow: 0 18px 40px rgba(107, 75, 176, 0.2); }
+        .choice-icon { font-size: 3.2rem; margin-bottom: 0.8rem; }
+        .choice-title { font-size: 1.25rem; font-weight: 800; color: #1f162d; margin-bottom: 0.4rem; text-transform: uppercase; }
+        .choice-desc { font-size: 0.84rem; color: #625b6e; line-height: 1.5; margin-bottom: 1.2rem; }
+        
+        .stColumns { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .stColumn { flex: 1; }
+        
+        .avatar-studio { display: none; }
+        .avatar-studio.active { display: flex; }
+        .photo-upload { display: none; }
+        .photo-upload.active { display: block; }
+        
+        .preview-pane { flex: 1.2; text-align: center; background: white; border-radius: 18px; padding: 1rem; border: 1px solid #eee; }
+        .controls-pane { flex: 1; background: white; padding: 1.5rem; border-radius: 18px; border: 1px solid #eee;}
+        
+        .tab-row { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .tab-btn {
+            padding: 0.6rem 1rem; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; white-space: nowrap;
+            background: #f5efff; color: #2d174d; transition: all 0.2s ease; font-size: 0.85rem;
+        }
+        .tab-btn.active { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; }
+        
+        .substep-panel { display: none; }
+        .substep-panel.active { display: block; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 1rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 1rem; }
+        
+        .select-btn {
+            background: #f5efff; border: 1.5px solid rgba(107, 75, 176, 0.25); color: #2d174d;
+            padding: 0.8rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.2s;
+        }
+        .select-btn.active { background: #6b4bb0; color: white; border-color: #6b4bb0; }
+        
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; }
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Virtual Stylist & Avatar Studio" 
+             data-subtitle="Create your personalized visual styling model or upload a photo." 
+             data-badge="StyleAI" 
+             data-active="04 Avatar">
+        </div>
+
+        <div class="step-indicator-bar">
+            <div class="step-badge">STEP 4 OF 5 · Photo or Avatar Profile Creation</div>
+            <div class="step-dots">
+                <div class='dot'></div>
+                <div class='dot'></div>
+                <div class='dot'></div>
+                <div class='dot active'></div>
+                <div class='dot'></div>
+            </div>
+        </div>
+
+        <div class="hero-panel" style="margin-bottom:1.5rem;">
+            <div class="page-kicker">ONBOARDING STAGE 3</div>
+            <div style="font-size: clamp(1.5rem, 2.2vw, 2.3rem); font-weight: 800; color: #1f162d;">
+                How Would You Like To Create Your Look?
+            </div>
+            <div style="color: #5f5a6d; font-size: 0.92rem; margin-top: 0.3rem;">
+                Choose between building a personalized virtual model or uploading your own photo for styling.
+            </div>
+        </div>
+
+        <div class="stColumns">
+            <div class="stColumn" onclick="setMode('photo')">
+                <div class="choice-card" id="mode-photo">
+                    <div>
+                        <div class="choice-icon">📷</div>
+                        <div class="choice-title">OPTION 1: UPLOAD YOUR PHOTO</div>
+                        <div class="choice-desc">Use your own full-body photo for personalized outfit recommendations and visual analysis.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stColumn" onclick="setMode('avatar')">
+                <div class="choice-card active" id="mode-avatar">
+                    <div>
+                        <div class="choice-icon">🧑‍🎨</div>
+                        <div class="choice-title">OPTION 2: CREATE YOUR AVATAR</div>
+                        <div class="choice-desc">Build a personalized high-fidelity virtual fashion model based on your profile proportions and skin tone.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHOTO UPLOAD -->
+        <div id="photo-section" class="photo-upload panel">
+            <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">📷 Full-Body Photo Upload</div>
+            <input type="file" id="photo-input" accept="image/png, image/jpeg" style="margin-bottom:1rem;">
+            <div id="photo-preview-container"></div>
+            <div id="photo-status" style="color: green; font-weight: 600; margin-top: 0.5rem;"></div>
+        </div>
+
+        <!-- AVATAR STUDIO -->
+        <div id="avatar-section" class="avatar-studio stColumns">
+            <div class="preview-pane">
+                <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🎨 Professional Fashion Avatar Studio</div>
+                <div id="avatar-preview" style="height: 500px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <!-- SVG will be injected here -->
+                    Loading avatar...
+                </div>
+            </div>
+            <div class="controls-pane">
+                <div class="page-kicker">CUSTOMIZE YOUR LOOK</div>
+                
+                <div class="tab-row">
+                    <button class="tab-btn active" onclick="showTab(1)" id="tab-1">Preset Model</button>
+                    <button class="tab-btn" onclick="showTab(2)" id="tab-2">Hair & Style</button>
+                    <button class="tab-btn" onclick="showTab(3)" id="tab-3">Body Shape</button>
+                    <button class="tab-btn" onclick="showTab(4)" id="tab-4">Skin Tone</button>
+                    <button class="tab-btn" onclick="showTab(5)" id="tab-5">Accessories</button>
+                </div>
+
+                <!-- PRESET MODEL -->
+                <div id="panel-1" class="substep-panel active">
+                    <p style="font-size:0.85rem; color:#666; margin-bottom:1rem;">Each stance offers a distinct fashion posture while maintaining your personal proportions.</p>
+                    <div class="grid-2" id="grid-preset"></div>
+                </div>
+
+                <!-- HAIR -->
+                <div id="panel-2" class="substep-panel">
+                    <strong>Hairstyle & Cut</strong>
+                    <div class="grid-3" id="grid-hairstyle"></div>
+                    <br>
+                    <strong>Hair Colour</strong>
+                    <div class="grid-3" id="grid-haircolor"></div>
+                </div>
+
+                <!-- BODY SHAPE -->
+                <div id="panel-3" class="substep-panel">
+                    <strong>Body Contour & Silhouette</strong>
+                    <div class="grid-2" id="grid-shape"></div>
+                </div>
+
+                <!-- SKIN TONE -->
+                <div id="panel-4" class="substep-panel">
+                    <strong>Skin Tone Shading</strong>
+                    <div class="grid-3" id="grid-skin"></div>
+                </div>
+
+                <!-- ACCESSORIES -->
+                <div id="panel-5" class="substep-panel">
+                    <strong>Accessories & Details</strong>
+                    <div class="grid-2" id="grid-acc"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton">
+                <button class="btn-secondary" onclick="window.location.href='preferences.html'">← Back</button>
+            </div>
+            <div class="stButton" id="btn-reset" style="display:none;">
+                <button class="btn-secondary" onclick="resetAvatar()">↺ Reset Avatar</button>
+            </div>
+            <div class="stButton" id="btn-save" style="display:none;">
+                <button class="btn-secondary" onclick="saveAvatar()">💾 Save Avatar Look</button>
+            </div>
+            <div class="stButton">
+                <button class="btn-primary" onclick="window.location.href='recommendations.html'">CONTINUE TO RECOMMENDATIONS →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/avatar.js"></script>
+</body>
+</html>

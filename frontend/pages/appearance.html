@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Appearance & Colour</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .tab-row { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        .tab-btn {
+            flex: 1; padding: 0.8rem; border-radius: 14px; border: none; font-weight: 800; cursor: pointer; text-align: center;
+            background: #f5efff; color: #2d174d; transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(45, 30, 65, 0.04); border: 1.5px solid rgba(107, 75, 176, 0.25);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none;
+        }
+
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .select-card {
+            background: white; border: 2px solid transparent; border-radius: 18px; padding: 1.2rem;
+            text-align: center; box-shadow: 0 8px 24px rgba(45, 30, 65, 0.05); transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .select-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(106, 75, 176, 0.12); }
+        .select-card.active { border-color: #6a4bb0; background: #faf8ff; box-shadow: 0 10px 28px rgba(106, 75, 176, 0.15); }
+        .select-card .card-title { font-weight: 800; color: #1b1627; font-size: 1.05rem; }
+        .select-card .card-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+        
+        .substep-panel { display: none; }
+        .substep-panel.active { display: block; }
+        
+        .btn-controls { display: flex; justify-content: space-between; gap: 2rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; }
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+        
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Appearance & Preferences" 
+             data-subtitle="Tailor your color palette, style mood and event context step-by-step." 
+             data-badge="StyleAI" 
+             data-active="02 Appearance">
+        </div>
+
+        <div class="step-indicator-bar">
+            <div class="step-badge">STEP 2 OF 5 · Appearance & Style Inputs</div>
+            <div class="step-dots">
+                <div class='dot'></div>
+                <div class='dot active'></div>
+                <div class='dot'></div>
+                <div class='dot'></div>
+                <div class='dot'></div>
+            </div>
+        </div>
+
+        <div class="tab-row">
+            <button class="tab-btn active" onclick="showSubstep(1)" id="tab-1">1. Skin Tone</button>
+            <button class="tab-btn" onclick="showSubstep(2)" id="tab-2">2. Favourite Colours</button>
+            <button class="tab-btn" onclick="showSubstep(3)" id="tab-3">3. Preferred Style</button>
+            <button class="tab-btn" onclick="showSubstep(4)" id="tab-4">4. Occasion Context</button>
+        </div>
+
+        <!-- SUBSTEP 1 -->
+        <div id="substep-1" class="substep-panel active">
+            <div class="hero-panel" style="margin-bottom:1.5rem;">
+                <div class="page-kicker">SUBSTEP 1 OF 4</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #1f162d;">Select Your Skin Tone</div>
+                <div style="color: #5f5a6d; font-size: 0.88rem;">Our color harmony algorithm matches clothing palettes to complement your skin tone undertones.</div>
+            </div>
+            
+            <!-- We will render these via JS to avoid duplication -->
+            <div class="grid-4" id="skin-tone-grid"></div>
+        </div>
+
+        <!-- SUBSTEP 2 -->
+        <div id="substep-2" class="substep-panel">
+            <div class="hero-panel" style="margin-bottom:1.5rem;">
+                <div class="page-kicker">SUBSTEP 2 OF 4</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #1f162d;">Select Your Favourite Colours</div>
+                <div style="color: #5f5a6d; font-size: 0.88rem;">Choose colors you feel most confident wearing. We will prioritize these in recommendations.</div>
+            </div>
+            
+            <div class="grid-4" id="colors-grid"></div>
+            
+            <div class='mini-card' id="active-palette-card">
+                <strong>Active Palette Preferences:</strong> <span id="active-palette-list"></span>
+            </div>
+        </div>
+
+        <!-- SUBSTEP 3 -->
+        <div id="substep-3" class="substep-panel">
+            <div class="hero-panel" style="margin-bottom:1.5rem;">
+                <div class="page-kicker">SUBSTEP 3 OF 4</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #1f162d;">Select Preferred Style Aesthetic</div>
+                <div style="color: #5f5a6d; font-size: 0.88rem;">What styling direction resonates most with your personal aesthetic?</div>
+            </div>
+            
+            <div class="grid-4" id="style-grid"></div>
+        </div>
+
+        <!-- SUBSTEP 4 -->
+        <div id="substep-4" class="substep-panel">
+            <div class="hero-panel" style="margin-bottom:1.5rem;">
+                <div class="page-kicker">SUBSTEP 4 OF 4</div>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #1f162d;">Select Occasion Context</div>
+                <div style="color: #5f5a6d; font-size: 0.88rem;">Where are you planning to wear this outfit? Our stylist optimizes for setting propriety.</div>
+            </div>
+            
+            <div class="grid-4" id="occasion-grid"></div>
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="flex:1;">
+                <button class="btn-secondary" onclick="window.location.href='profile.html'">← BACK TO PROFILE</button>
+            </div>
+            <div style="flex:1.2;"></div>
+            <div class="stButton" style="flex:1;">
+                <button class="btn-primary" onclick="window.location.href='preferences.html'">CONTINUE TO PREFERENCES →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/appearance.js"></script>
+</body>
+</html>

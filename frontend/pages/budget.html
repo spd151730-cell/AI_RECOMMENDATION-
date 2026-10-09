@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Budget Stylist</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .budget-box {
+            background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 16px;
+            padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 8px 24px rgba(45, 30, 65, 0.05);
+        }
+        
+        .alt-card {
+            background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 16px;
+            padding: 1.2rem; margin-bottom: 1rem; box-shadow: 0 4px 12px rgba(45, 30, 65, 0.04);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+        }
+        
+        .progress-bar { width: 100%; height: 8px; background: #e0d5f5; border-radius: 999px; overflow: hidden; margin-top: 0.3rem; }
+        .progress-fill { display: block; height: 100%; background: linear-gradient(90deg, #6b4bb0, #ef7d8f); border-radius: 999px; }
+
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 0.9rem;}
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Style Within Your Budget" 
+             data-subtitle="See how your outfit compares to your target spend and where you can save." 
+             data-badge="StyleAI" 
+             data-active="08 Budget">
+        </div>
+
+        <div id="budget-overview">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">💡 Smart replacement suggestions</div>
+        
+        <div id="alt-suggestions">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">📊 Budget status</div>
+        
+        <div class="budget-box" id="budget-status-box">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="width: 300px;">
+                <button class="btn-secondary" onclick="window.location.href='customize.html'">← Back to Customize</button>
+            </div>
+            <div class="stButton" style="width: 300px;">
+                <button class="btn-primary" onclick="window.location.href='pairing.html'">Interactive Pairing →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/budget.js"></script>
+</body>
+</html>

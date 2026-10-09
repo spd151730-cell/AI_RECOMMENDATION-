@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Interactive Pairing</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .panel-box {
+            background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 16px;
+            padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 8px 24px rgba(45, 30, 65, 0.05);
+        }
+        
+        .pairing-row {
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid #eee; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+        }
+
+        .chip {
+            display: inline-block; padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+            background: #f5efff; color: #2d174d; border: 1px solid rgba(107, 75, 176, 0.25);
+        }
+
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; font-size:0.9rem;}
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Build Your Outfit Piece by Piece" 
+             data-subtitle="Pair your selected item with complementary options." 
+             data-badge="StyleAI" 
+             data-active="09 Pairing">
+        </div>
+
+        <div class="panel-box">
+            <div class="page-kicker">Selected item</div>
+            <div style="display:flex; align-items:center; gap:1.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+                <div style="width:110px; height:110px; border-radius:18px; background:linear-gradient(135deg, #ebe1ff, #ffe9ec); display:flex; align-items:center; justify-content:center; font-size:3rem;">👕</div>
+                <div>
+                    <div style="font-size:1.4rem; font-weight:800; color:#1d1528;">Blue Shirt</div>
+                    <div style="color:#666; font-size:0.9rem; margin-top:0.3rem; font-weight:600;">Blue · Casual · ₹899</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🤝 Suggested pairings</div>
+        
+        <div id="pairings-list">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🔗 Pairing flow</div>
+        
+        <div id="pairing-flow" style="display:flex; flex-wrap:wrap; align-items:center;">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="width: 300px;">
+                <button class="btn-secondary" onclick="window.location.href='budget.html'">← Back to Budget Stylist</button>
+            </div>
+            <div class="stButton" style="width: 300px;">
+                <button class="btn-primary" onclick="window.location.href='explanation.html'">Why This Outfit →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/pairing.js"></script>
+</body>
+</html>

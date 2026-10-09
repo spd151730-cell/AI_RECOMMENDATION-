@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Streamlit classes polyfill -->
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        .stColumns { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        .stColumn { flex: 1; }
+        /* Map streamlit button to basic styling from style.css */
+        .stButton button { width: 100%; cursor: pointer; }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <!-- Render page header via JS -->
+        <div id="nav-container" 
+             data-title="Your Personal AI Stylist" 
+             data-subtitle="Discover outfits tailored to your skin tone, proportions, style aesthetic and budget." 
+             data-badge="StyleAI" 
+             data-active="Home">
+        </div>
+
+        <div class="hero-panel">
+            <div class="page-kicker">WELCOME TO STYLEAI</div>
+            <div style="font-size: clamp(1.8rem, 2.5vw, 2.8rem); font-weight: 900; line-height: 1.1; color: #1f162d; margin-top: 0.2rem;">
+                AI Outfit Recommendation & Virtual Styling System
+            </div>
+            <div style="margin-top: 0.6rem; color: #5f5a6d; font-size: 0.98rem;">
+                Experience personalized fashion styling guided by your skin tone, body proportions, preferred aesthetics, and occasion contexts.
+            </div>
+        </div>
+
+        <br>
+
+        <div class="stColumns">
+            <div class="stColumn stButton">
+                <button kind="primary" onclick="window.location.href='pages/profile.html'">🚀 Start Onboarding Journey →</button>
+            </div>
+            <div class="stColumn stButton">
+                <button kind="secondary" onclick="window.location.href='pages/avatar.html'">🧑‍🎨 Open Avatar Studio</button>
+            </div>
+            <div class="stColumn stButton">
+                <button kind="secondary" onclick="window.location.href='pages/recommendations.html'">🛍️ Browse Marketplace</button>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🧭 Your Progressive Styling Journey</div>
+
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">1</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Basic Profile Input</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Enter name, gender, age, height, weight and set your interactive budget slider.</div>
+            </div>
+        </div>
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">2</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Step-by-Step Appearance</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Progressively set your skin tone, favourite colours, preferred style, and occasion.</div>
+            </div>
+        </div>
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">3</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Photo or Avatar Choice</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Select between uploading a full-body photo or entering the Avatar Studio.</div>
+            </div>
+        </div>
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">4</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Professional Avatar Builder</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Customize hair, skin tone, body silhouette, and model pose with live updates.</div>
+            </div>
+        </div>
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">5</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Preference Analysis</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Tell your AI stylist your mood and generate a tailored style direction.</div>
+            </div>
+        </div>
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">6</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Fashion Marketplace</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Browse curated clothing items with fabric details, ratings, and store sources.</div>
+            </div>
+        </div>
+        <div class="journey-item" style="margin-bottom:0.6rem;">
+            <div class="journey-num">7</div>
+            <div>
+                <div style="font-weight:800; color:#1f162d; font-size:0.92rem;">Complete Outfit Dashboard</div>
+                <div style="font-size:0.78rem; color:#625b6e;">Review your complete look, Swiggy-style breakdown, fabric notes, and cost totals.</div>
+            </div>
+        </div>
+
+        <br>
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">📊 Current Profile Snapshot</div>
+        
+        <div class="stColumns" id="stats-container">
+            <div class="stColumn">
+                <div class="stat-card">
+                    <div class="stat-label">User Profile</div>
+                    <div class="stat-value" id="stat-profile-value">...</div>
+                    <div class="stat-detail" id="stat-profile-detail">...</div>
+                </div>
+            </div>
+            <div class="stColumn">
+                <div class="stat-card">
+                    <div class="stat-label">Style Budget</div>
+                    <div class="stat-value" id="stat-budget-value">...</div>
+                    <div class="stat-detail">Spending limit</div>
+                </div>
+            </div>
+            <div class="stColumn">
+                <div class="stat-card">
+                    <div class="stat-label">Style Aesthetic</div>
+                    <div class="stat-value" id="stat-style-value">...</div>
+                    <div class="stat-detail">Current preference</div>
+                </div>
+            </div>
+            <div class="stColumn">
+                <div class="stat-card">
+                    <div class="stat-label">Occasion</div>
+                    <div class="stat-value" id="stat-occasion-value">...</div>
+                    <div class="stat-detail">Planned setting</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Outfit Details</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .stColumns { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .stColumn { flex: 1; }
+        
+        .breakdown-row {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 16px;
+            padding: 1rem 1.5rem; margin-bottom: 0.8rem; box-shadow: 0 4px 12px rgba(45, 30, 65, 0.04);
+        }
+        .item-left { display: flex; align-items: center; gap: 1.2rem; }
+        .item-icon-box {
+            width: 48px; height: 48px; border-radius: 12px; background: #f5efff;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #6b4bb0;
+        }
+        .item-title { font-weight: 800; font-size: 1.05rem; color: #1b1627; margin-bottom: 0.2rem; }
+        .item-subtitle { font-size: 0.8rem; color: #625b6e; font-weight: 600; }
+        .item-price { font-size: 1.2rem; font-weight: 900; color: #1f162d; }
+        
+        .outfit-total-row {
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(135deg, #1f162d, #372653); color: white; border-radius: 16px;
+            padding: 1.2rem 1.5rem; margin-top: 1.5rem; box-shadow: 0 12px 24px rgba(31, 22, 45, 0.2);
+        }
+        .total-label { font-weight: 800; font-size: 0.95rem; letter-spacing: 0.05em; }
+        .total-amount { font-size: 1.8rem; font-weight: 900; }
+        
+        .progress-bar { width: 100%; height: 8px; background: #e0d5f5; border-radius: 999px; overflow: hidden; margin-top: 0.3rem; }
+        .progress-fill { display: block; height: 100%; background: linear-gradient(90deg, #6b4bb0, #ef7d8f); border-radius: 999px; }
+
+        .btn-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        .stButton button { padding: 0.6rem 1rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; font-size: 0.85rem;}
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+        .btn-outline { background: white; color: #2d174d; border: 1px solid #ddd; }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Your Complete Look" 
+             data-subtitle="Complete outfit styling dashboard with virtual preview, breakdown, and textile insights." 
+             data-badge="StyleAI" 
+             data-active="06 Complete Look">
+        </div>
+
+        <div class="panel stColumns">
+            <div class="stColumn" style="flex:1.1">
+                <div id="avatar-preview" style="height: 530px; display: flex; align-items: center; justify-content: center;">
+                    Loading avatar preview...
+                </div>
+            </div>
+            
+            <div class="stColumn" style="flex:1.2">
+                <div class="hero-panel" style="height:100%; display:flex; flex-direction:column; justify-content:center;">
+                    <div class="page-kicker">STYLING SUMMARY</div>
+                    <div style="font-size: 1.8rem; font-weight: 900; color: #1f162d; margin-top: 0.2rem;" id="summary-title">Curated Outfit</div>
+                    <div style="color: #5f5a6d; font-size: 0.9rem; margin-top: 0.4rem; line-height: 1.55;" id="summary-desc"></div>
+                    
+                    <div style="margin-top: 1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+                        <div class="stat-card" style="flex:1;">
+                            <div class="stat-label">Total Look Cost</div>
+                            <div class="stat-value" id="summary-cost">...</div>
+                        </div>
+                        <div class="stat-card" style="flex:1;">
+                            <div class="stat-label">Match Score</div>
+                            <div class="stat-value" style="color:#6b4bb0;" id="summary-score">...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outfit-breakdown-card">
+            <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🛍️ Outfit Item Breakdown</div>
+            
+            <div id="items-list">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div class="outfit-total-row">
+                <div class="total-label">TOTAL OUTFIT PRICE</div>
+                <div class="total-amount" id="total-amount">...</div>
+            </div>
+        </div>
+
+        <div class="stColumns" style="margin-top:2rem;">
+            <div class="stColumn panel">
+                <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">💡 Why We Chose This Look For You</div>
+                <div id="reasons-list">
+                    <!-- Injected via JS -->
+                </div>
+                
+                <br>
+                <div class="page-kicker">MATCH SCORE BREAKDOWN</div>
+                <div id="score-bars">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+            
+            <div class="stColumn panel">
+                <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🧵 Fabric & Textile Details</div>
+                <div id="fabric-notes">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <div class="stColumns btn-controls" style="margin-top:2rem;">
+            <div class="stColumn stButton">
+                <button class="btn-secondary" onclick="window.location.href='recommendations.html'">← Back to Marketplace</button>
+            </div>
+            <div class="stColumn stButton">
+                <button class="btn-primary" onclick="window.location.href='customize.html'">✨ Customize Outfit</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/outfit-details.js"></script>
+</body>
+</html>

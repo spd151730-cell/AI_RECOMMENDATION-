@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Final Look</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .stColumns { display: flex; gap: 2rem; margin-bottom: 2rem; }
+        .stColumn { flex: 1; }
+        
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; font-size:0.9rem;}
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Final Look & Order Summary" 
+             data-subtitle="Congratulations! Your personalized outfit styling is complete and ready to wear." 
+             data-badge="StyleAI" 
+             data-active="Final Look">
+        </div>
+
+        <div class="panel stColumns">
+            <div class="stColumn">
+                <div id="avatar-preview" style="height: 530px; display: flex; align-items: center; justify-content: center;">
+                    Loading final look...
+                </div>
+            </div>
+            
+            <div class="stColumn">
+                <div class="hero-panel" style="height:100%; display:flex; flex-direction:column; justify-content:center;">
+                    <div class="page-kicker">STYLING READY</div>
+                    <div style="font-size: 2rem; font-weight: 900; color: #1f162d; margin-top: 0.2rem;" id="final-title">
+                        Style
+                    </div>
+                    <div style="color: #5f5a6d; font-size: 0.9rem; margin-top: 0.4rem; line-height: 1.55;" id="final-desc">
+                        Your complete look is optimized...
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <div class="stat-card">
+                            <div class="stat-label">Total Outfitted Spend</div>
+                            <div class="stat-value" id="final-cost">...</div>
+                            <div class="stat-detail" id="final-budget">...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="flex:1;">
+                <button class="btn-secondary" onclick="restart()">🔄 Restart Styling Journey</button>
+            </div>
+            <div class="stButton" style="flex:1;">
+                <button class="btn-primary" onclick="window.location.href='outfit-details.html'">✨ Modify Complete Look</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/final.js"></script>
+</body>
+</html>

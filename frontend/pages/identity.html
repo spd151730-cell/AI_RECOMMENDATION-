@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Multi Identity</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .identity-box {
+            background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 12px;
+            padding: 1.5rem; margin-bottom: 1rem; position: relative;
+        }
+        
+        .identity-visual {
+            font-size: 2.5rem; width: 64px; height: 64px; border-radius: 16px; 
+            background: linear-gradient(135deg, #f0ebff, #ffeef2); display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .chip { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 999px; font-size: 0.75rem; background: #f5efff; margin-right: 0.4rem; }
+
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; font-size:0.9rem;}
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Style Me For Every Version Of Me" 
+             data-subtitle="Switch between different identities and moods." 
+             data-badge="StyleAI" 
+             data-active="11 Identity">
+        </div>
+
+        <div id="identities-list">
+            <!-- Injected via JS -->
+        </div>
+
+        <div style="background:#e0f2fe; color:#0369a1; padding:1rem; border-radius:12px; margin-top:1.5rem; font-size:0.9rem;">
+            ℹ️ This page is a front-end identity switcher for future style-profile variants.
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="width:300px;">
+                <button class="btn-secondary" onclick="window.location.href='preview.html'">← Back to Virtual Styling</button>
+            </div>
+            <div class="stButton" style="width:300px;">
+                <button class="btn-primary" onclick="window.location.href='final.html'">VIEW FINAL LOOK →</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/app.js"></script>
+    <script src="../js/identity.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Virtual Styling Preview</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .mini-card { background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 12px; padding: 1rem; text-align: center; }
+        .stColumns { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .stColumn { flex: 1; }
+        
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; font-size:0.9rem;}
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="See Your Look" 
+             data-subtitle="Preview the complete outfit before you finalize it." 
+             data-badge="StyleAI" 
+             data-active="10 Preview">
+        </div>
+
+        <div class="panel">
+            <div id="avatar-preview" style="height: 530px; display: flex; align-items: center; justify-content: center;">
+                Loading preview...
+            </div>
+        </div>
+
+        <div id="score-box" style="margin-top:1.5rem; margin-bottom:1.5rem;">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="page-kicker">👗 Selected outfit details</div>
+        <div class="stColumns" id="details-grid">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="width:250px;">
+                <button class="btn-secondary" onclick="window.location.href='explanation.html'">← Back to Why This Outfit</button>
+            </div>
+            <div class="stButton" style="width:250px;">
+                <button class="btn-secondary" onclick="location.reload()">↻ Regenerate preview</button>
+            </div>
+            <div class="stButton" style="width:250px;">
+                <button class="btn-primary" onclick="window.location.href='identity.html'">Multi Identity →</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/app.js"></script>
+    <script src="../js/preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Preferences</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        .stColumns { display: flex; gap: 2rem; margin-bottom: 1rem; }
+        .stColumn { flex: 1; }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem; color: #333; }
+        .form-group select { 
+            width: 100%; 
+            padding: 0.6rem; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 0.95rem; 
+            box-sizing: border-box;
+            background-color: white;
+        }
+        
+        /* Simulating multiselect with standard select multiple */
+        select[multiple] { height: 120px; }
+
+        /* Simulating radio buttons */
+        .radio-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .radio-label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; cursor: pointer; }
+        
+        .btn-controls { display: flex; justify-content: space-between; gap: 2rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; }
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Fine-Tune Style Signals" 
+             data-subtitle="Detailed fit, brand preferences, fabric choices and avoided styles." 
+             data-badge="StyleAI" 
+             data-active="03 Preferences">
+        </div>
+
+        <div class="step-indicator-bar">
+            <div class="step-badge">STEP 3 OF 5 · Detailed Style Signals</div>
+            <div class="step-dots">
+                <div class='dot'></div>
+                <div class='dot'></div>
+                <div class='dot active'></div>
+                <div class='dot'></div>
+                <div class='dot'></div>
+            </div>
+        </div>
+
+        <div style="border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 18px; padding: 1.5rem; background: white;">
+            <div class="stColumns">
+                <div class="stColumn">
+                    <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">👗 Fit & Silhouette Preference</div>
+                    
+                    <div class="form-group">
+                        <label>Preferred Cut</label>
+                        <div class="radio-group" id="fit-group">
+                            <label class="radio-label"><input type="radio" name="fit" value="Loose / Oversized"> Loose / Oversized</label>
+                            <label class="radio-label"><input type="radio" name="fit" value="Regular Fit"> Regular Fit</label>
+                            <label class="radio-label"><input type="radio" name="fit" value="Slim / Fitted"> Slim / Fitted</label>
+                        </div>
+                    </div>
+
+                    <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🧵 Fabric & Textile Preferences</div>
+                    <div class="form-group">
+                        <label>Preferred Fabrics (Hold Ctrl/Cmd to select multiple)</label>
+                        <select id="fabrics" multiple>
+                            <option value="Breathable Linen">Breathable Linen</option>
+                            <option value="Crisp Cotton Blend">Crisp Cotton Blend</option>
+                            <option value="Classic Denim">Classic Denim</option>
+                            <option value="Silk & Satin">Silk & Satin</option>
+                            <option value="Soft Supima Cotton">Soft Supima Cotton</option>
+                            <option value="Handloom Khadi">Handloom Khadi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="stColumn">
+                    <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🚫 Colours & Styles to Avoid</div>
+                    <div class="form-group">
+                        <label>Styles & Tones I Avoid (Hold Ctrl/Cmd to select multiple)</label>
+                        <select id="avoids" multiple>
+                            <option value="Neon / Flashy">Neon / Flashy</option>
+                            <option value="Overly Bright">Overly Bright</option>
+                            <option value="Dense Layering">Dense Layering</option>
+                            <option value="Clashing Tones">Clashing Tones</option>
+                            <option value="Pastels">Pastels</option>
+                        </select>
+                    </div>
+
+                    <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🛍️ Favorite Fashion Brands</div>
+                    <div class="form-group">
+                        <label>Preferred Stores / Brands (Hold Ctrl/Cmd to select multiple)</label>
+                        <select id="brands" multiple>
+                            <option value="ZARA">ZARA</option>
+                            <option value="UNIQLO">UNIQLO</option>
+                            <option value="H&M">H&M</option>
+                            <option value="FabIndia">FabIndia</option>
+                            <option value="Mango">Mango</option>
+                            <option value="Levi's">Levi's</option>
+                            <option value="Adidas">Adidas</option>
+                            <option value="Aldo">Aldo</option>
+                            <option value="Myntra">Myntra</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="flex:1;">
+                <button class="btn-secondary" onclick="window.location.href='appearance.html'">← BACK TO APPEARANCE INPUTS</button>
+            </div>
+            <div style="flex:1.2;"></div>
+            <div class="stButton" style="flex:1;">
+                <button class="btn-primary" onclick="window.location.href='avatar.html'">PROCEED TO AVATAR BUILDER →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/preferences.js"></script>
+</body>
+</html>

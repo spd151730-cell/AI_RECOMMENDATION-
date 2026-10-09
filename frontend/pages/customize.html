@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STYLEAI - Customize Outfit</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stApp { min-height: 100vh; }
+        .main { padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+        
+        .stColumns { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .stColumn { flex: 1; }
+        
+        .mini-card {
+            background: #ffffff; border: 1px solid rgba(103, 80, 154, 0.12); border-radius: 12px;
+            padding: 1rem; text-align: center; margin-bottom: 0.5rem;
+        }
+        
+        .budget-box {
+            padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem;
+        }
+        .budget-ok { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .budget-over { background: #fef2f2; border: 1px solid #fecaca; }
+        
+        .item-container {
+            border: 1px solid #ddd; border-radius: 12px; padding: 1rem; margin-bottom: 1rem; background: white;
+        }
+        
+        .btn-controls { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+        .stButton button { padding: 0.8rem 1.2rem; width: 100%; border-radius: 14px; font-weight: 800; cursor: pointer; font-size:0.9rem; }
+        .btn-primary { background: linear-gradient(135deg, #6a4bb0, #ef7d8f); color: white; border: none; }
+        .btn-secondary { background: #f5efff; color: #2d174d; border: 1.5px solid rgba(107, 75, 176, 0.25); }
+        
+        .cand-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.8rem; border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body class="stApp">
+    <div class="main block-container">
+        <div id="nav-container" 
+             data-title="Make It Yours" 
+             data-subtitle="Keep what you love and personalize the rest of your outfit." 
+             data-badge="StyleAI" 
+             data-active="07 Customize">
+        </div>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🔒 Lock what you love</div>
+        
+        <div class="stColumns" id="lock-grid">
+            <!-- Injected via JS -->
+        </div>
+
+        <div id="budget-info">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="page-kicker" style="margin-top:0.8rem; margin-bottom:0.4rem;">🔄 Customize each piece</div>
+        
+        <div class="stButton" style="margin-bottom:1.5rem;">
+            <button class="btn-primary" onclick="regenerateUnlocked()">✨ Regenerate Unlocked Items</button>
+        </div>
+        
+        <div id="items-container">
+            <!-- Injected via JS -->
+        </div>
+
+        <div class="btn-controls">
+            <div class="stButton" style="width:300px;">
+                <button class="btn-secondary" onclick="window.location.href='outfit-details.html'">← Back to Outfit Details</button>
+            </div>
+            <div class="stButton" style="width:300px;">
+                <button class="btn-primary" onclick="window.location.href='budget.html'">Budget Stylist →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/app.js"></script>
+    <script src="../js/customize.js"></script>
+</body>
+</html>
